@@ -230,6 +230,15 @@ header {
   border-color: var(--primary-color);
 }
 
+.category-tab.dragging {
+  opacity: 0.5;
+}
+
+.category-tab.drag-over {
+  border: 2px dashed var(--primary-color);
+  background: var(--bg-secondary);
+}
+
 /* ========== Shortcut Grid ========== */
 .shortcut-grid {
   display: grid;

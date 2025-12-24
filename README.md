@@ -109,17 +109,18 @@ HyperLaunch/
 | icon_text  | ❌        | Letter for color icon             |
 | icon_color | ❌        | HEX color (e.g. `#2563EB`)        |
 | order      | ❌        | Display order                     |
+| pinned     | ❌        | Pin to top (`true` / `false`)     |
 
 ### Example CSV
 
 ```csv
-title,url,category,icon_type,icon_text,icon_color,order
-Gmail,https://mail.google.com,Work,auto,,,1
-WhatsApp Web,https://web.whatsapp.com,Work,auto,,,2
-Client A (WA),https://wa.me/60123456789,Work,auto,,,3
-My Notes,notion://www.notion.so,Personal,color,N,#111827,4
-Local Handbook,file:///C:/Users/Charlie/Documents/handbook.pdf,Work,color,H,#2563EB,5
-YouTube,https://youtube.com,Hobbies,auto,,,6
+title,url,category,icon_type,icon_text,icon_color,order,pinned
+Gmail,https://mail.google.com,Work,color,G,#EA4335,1,true
+WhatsApp Web,https://web.whatsapp.com,Work,emoji,📱,,2,false
+Client A (WA),https://wa.me/60123456789,Work,color,C,#10B981,3,false
+My Notes,notion://www.notion.so,Personal,color,N,#111827,4,true
+Local Handbook,file:///C:/Users/Charlie/Documents/handbook.pdf,Work,color,H,#2563EB,5,false
+YouTube,https://youtube.com,Hobbies,color,Y,#FF0000,6,false
 ```
 
 > ⚠️ Windows local files must use `file:///C:/...` format.
@@ -156,15 +157,15 @@ YouTube,https://youtube.com,Hobbies,auto,,,6
 
 ### Phase 2 – UX Enhancements
 
-* [ ] Light / Dark theme toggle
-* [ ] Persistent grid column settings
+* [x] Light / Dark theme toggle
+* [x] Persistent grid column settings
 * [ ] Category header collapse / expand
 * [ ] Better focus indicator for keyboard users
 
 ### Phase 3 – Power Features
 
-* [ ] Shortcut add/edit modal UI
-* [ ] Drag & drop reorder
+* [x] Shortcut add/edit modal UI
+* [x] Drag & drop reorder (shortcuts and categories)
 * [ ] Advanced search syntax (e.g. `cat:work`)
 * [ ] JSON import/export (for power users)
 

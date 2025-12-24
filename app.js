@@ -381,9 +381,23 @@ function renderCategoriesNav() {
     const tab = document.createElement("div");
     tab.className = "category-tab";
     tab.textContent = cat;
+    tab.dataset.category = cat;
+    
     if (cat === state.currentFilter) {
       tab.classList.add("active");
     }
+    
+    // Only make actual categories draggable (not "All" or "Pinned")
+    if (cat !== "All" && cat !== "Pinned") {
+      tab.draggable = true;
+      tab.addEventListener("dragstart", handleCategoryDragStart);
+      tab.addEventListener("dragend", handleCategoryDragEnd);
+    }
+    
+    // All tabs can receive drops (except All and Pinned)
+    tab.addEventListener("dragover", handleCategoryDragOver);
+    tab.addEventListener("drop", handleCategoryDrop);
+    
     tab.addEventListener("click", () => {
       state.currentFilter = cat;
       renderCategoriesNav();
@@ -724,13 +738,15 @@ function focusCard(index) {
 // ========== Drag and Drop ==========
 let draggedElement = null;
 let draggedShortcut = null;
+let dragType = null; // 'shortcut' or 'category'
 
 function handleDragStart(e) {
   draggedElement = e.currentTarget;
   draggedShortcut = state.shortcuts.find(s => s.id === e.currentTarget.dataset.shortcutId);
+  dragType = 'shortcut';
   e.currentTarget.classList.add("dragging");
   e.dataTransfer.effectAllowed = "move";
-  e.dataTransfer.setData("text/html", e.currentTarget.innerHTML);
+  e.dataTransfer.setData("text/plain", e.currentTarget.dataset.shortcutId);
 }
 
 function handleDragOver(e) {
@@ -758,20 +774,32 @@ function handleDrop(e) {
     return false;
   }
   
-  if (target.classList.contains("shortcut-card")) {
+  if (target.classList.contains("shortcut-card") && dragType === 'shortcut') {
     const draggedId = draggedElement.dataset.shortcutId;
     const targetId = target.dataset.shortcutId;
     
     const draggedIndex = state.shortcuts.findIndex(s => s.id === draggedId);
     const targetIndex = state.shortcuts.findIndex(s => s.id === targetId);
     
-    if (draggedIndex !== -1 && targetIndex !== -1) {
+    if (draggedIndex !== -1 && targetIndex !== -1 && draggedIndex !== targetIndex) {
+      // Get the target shortcut's category to update the dragged shortcut's category
+      const targetShortcut = state.shortcuts[targetIndex];
+      const draggedShortcutObj = state.shortcuts[draggedIndex];
+      
+      // Update category if dropping into a different category
+      if (draggedShortcutObj.category !== targetShortcut.category) {
+        draggedShortcutObj.category = targetShortcut.category;
+      }
+      
       // Remove the dragged item from array
       const [removed] = state.shortcuts.splice(draggedIndex, 1);
       
-      // Insert it at the target position
-      const newTargetIndex = state.shortcuts.findIndex(s => s.id === targetId);
-      state.shortcuts.splice(newTargetIndex, 0, removed);
+      // Calculate the correct insertion index after removal
+      // If dragging from before the target, target index shifts down by 1
+      const insertIndex = draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
+      
+      // Insert at the correct position
+      state.shortcuts.splice(insertIndex, 0, removed);
       
       // Update order for all items
       state.shortcuts.forEach((shortcut, index) => {
@@ -779,6 +807,7 @@ function handleDrop(e) {
       });
       
       saveData();
+      renderCategoriesNav();
       render();
     }
   }
@@ -793,6 +822,89 @@ function handleDragEnd(e) {
   });
   draggedElement = null;
   draggedShortcut = null;
+  dragType = null;
+}
+
+// ========== Category Drag and Drop ==========
+let draggedCategory = null;
+
+function handleCategoryDragStart(e) {
+  const category = e.currentTarget.dataset.category;
+  // Don't allow dragging "All" or "Pinned" tabs
+  if (category === "All" || category === "Pinned") {
+    e.preventDefault();
+    return;
+  }
+  draggedCategory = category;
+  dragType = 'category';
+  e.currentTarget.classList.add("dragging");
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text/plain", category);
+}
+
+function handleCategoryDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = "move";
+  
+  const target = e.currentTarget;
+  const targetCategory = target.dataset.category;
+  
+  // Don't allow dropping on "All" or "Pinned"
+  if (targetCategory === "All" || targetCategory === "Pinned") {
+    return false;
+  }
+  
+  if (draggedCategory && targetCategory !== draggedCategory) {
+    document.querySelectorAll(".category-tab.drag-over").forEach(el => {
+      el.classList.remove("drag-over");
+    });
+    target.classList.add("drag-over");
+  }
+  return false;
+}
+
+function handleCategoryDrop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  
+  const target = e.currentTarget;
+  const targetCategory = target.dataset.category;
+  
+  // Don't allow dropping on "All" or "Pinned"
+  if (targetCategory === "All" || targetCategory === "Pinned" || !draggedCategory) {
+    return false;
+  }
+  
+  if (draggedCategory !== targetCategory && dragType === 'category') {
+    const draggedIndex = state.categories.indexOf(draggedCategory);
+    const targetIndex = state.categories.indexOf(targetCategory);
+    
+    if (draggedIndex !== -1 && targetIndex !== -1) {
+      // Remove the dragged category
+      const [removed] = state.categories.splice(draggedIndex, 1);
+      
+      // Calculate the correct insertion index after removal
+      const insertIndex = draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
+      
+      // Insert at the correct position
+      state.categories.splice(insertIndex, 0, removed);
+      
+      saveData();
+      renderCategoriesNav();
+      render();
+    }
+  }
+  
+  return false;
+}
+
+function handleCategoryDragEnd(e) {
+  e.currentTarget.classList.remove("dragging");
+  document.querySelectorAll(".category-tab.drag-over").forEach(el => {
+    el.classList.remove("drag-over");
+  });
+  draggedCategory = null;
+  dragType = null;
 }
 
 // ========== CSV Import/Export ==========
@@ -827,6 +939,9 @@ async function handleCsvImport(e) {
     const iconType = values[3]?.trim() || "color";
     const iconText = values[4]?.trim() || title[0].toUpperCase();
     const iconColor = values[5]?.trim() || generateColor(title);
+    // Parse pinned column (index 7) - support "true", "1", "yes" as truthy values
+    const pinnedValue = values[7]?.trim()?.toLowerCase();
+    const pinned = pinnedValue === "true" || pinnedValue === "1" || pinnedValue === "yes";
     
     addShortcut({
       title,
@@ -834,7 +949,8 @@ async function handleCsvImport(e) {
       category,
       iconType,
       iconText,
-      iconColor
+      iconColor,
+      pinned
     });
     
     imported++;
@@ -870,7 +986,7 @@ function parseCSVLine(line) {
 }
 
 function handleCsvExport() {
-  const headers = ["title", "url", "category", "icon_type", "icon_text", "icon_color", "order"];
+  const headers = ["title", "url", "category", "icon_type", "icon_text", "icon_color", "order", "pinned"];
   const rows = [headers];
   
   state.shortcuts.forEach(s => {
@@ -881,7 +997,8 @@ function handleCsvExport() {
       s.iconType || "auto",
       s.iconText || "",
       s.iconColor || "",
-      s.order || ""
+      s.order || "",
+      s.pinned ? "true" : "false"
     ]);
   });
   
