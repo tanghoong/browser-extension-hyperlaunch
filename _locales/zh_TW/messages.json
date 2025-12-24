@@ -1,0 +1,162 @@
+{
+  "extensionName": {
+    "message": "HyperLaunch",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "快速、鍵盤友好的新分頁啟動器，支援網頁連結、WhatsApp、本地檔案和應用程式協定。",
+    "description": "Description of the extension"
+  },
+  "searchPlaceholder": {
+    "message": "搜尋捷徑...",
+    "description": "Placeholder text for search input"
+  },
+  "searchHint": {
+    "message": "按 ESC 聚焦",
+    "description": "Hint for keyboard shortcut"
+  },
+  "addShortcut": {
+    "message": "+ 新增捷徑",
+    "description": "Button to add new shortcut"
+  },
+  "importCSV": {
+    "message": "匯入 CSV",
+    "description": "Button to import CSV file"
+  },
+  "exportCSV": {
+    "message": "匯出 CSV",
+    "description": "Button to export CSV file"
+  },
+  "settings": {
+    "message": "設定",
+    "description": "Settings button tooltip"
+  },
+  "emptyStateTitle": {
+    "message": "還沒有捷徑",
+    "description": "Title when no shortcuts exist"
+  },
+  "emptyStateDesc": {
+    "message": "新增您的第一個捷徑開始使用！",
+    "description": "Description when no shortcuts exist"
+  },
+  "titleLabel": {
+    "message": "標題",
+    "description": "Label for title input"
+  },
+  "titlePlaceholder": {
+    "message": "例如：Gmail",
+    "description": "Placeholder for title input"
+  },
+  "urlLabel": {
+    "message": "網址",
+    "description": "Label for URL input"
+  },
+  "urlPlaceholder": {
+    "message": "例如：https://mail.google.com",
+    "description": "Placeholder for URL input"
+  },
+  "categoryLabel": {
+    "message": "分類",
+    "description": "Label for category input"
+  },
+  "categoryPlaceholder": {
+    "message": "例如：工作",
+    "description": "Placeholder for category input"
+  },
+  "iconTypeLabel": {
+    "message": "圖示類型",
+    "description": "Label for icon type select"
+  },
+  "iconAuto": {
+    "message": "自動（網站圖示）",
+    "description": "Auto icon option"
+  },
+  "iconColor": {
+    "message": "彩色圖示",
+    "description": "Color icon option"
+  },
+  "iconEmoji": {
+    "message": "表情符號",
+    "description": "Emoji icon option"
+  },
+  "iconTextLabel": {
+    "message": "圖示文字/表情",
+    "description": "Label for icon text input"
+  },
+  "iconTextPlaceholder": {
+    "message": "例如：G 或 📧",
+    "description": "Placeholder for icon text input"
+  },
+  "iconColorLabel": {
+    "message": "圖示顏色",
+    "description": "Label for icon color picker"
+  },
+  "pinLabel": {
+    "message": "置頂",
+    "description": "Label for pin checkbox"
+  },
+  "delete": {
+    "message": "刪除",
+    "description": "Delete button"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "儲存",
+    "description": "Save button"
+  },
+  "edit": {
+    "message": "編輯",
+    "description": "Edit button tooltip"
+  },
+  "editShortcut": {
+    "message": "編輯捷徑",
+    "description": "Modal title for editing shortcut"
+  },
+  "theme": {
+    "message": "主題",
+    "description": "Theme setting label"
+  },
+  "themeAuto": {
+    "message": "自動",
+    "description": "Auto theme option"
+  },
+  "themeLight": {
+    "message": "淺色",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "深色",
+    "description": "Dark theme option"
+  },
+  "gridColumns": {
+    "message": "網格欄數",
+    "description": "Grid columns setting label"
+  },
+  "showCategoryHeaders": {
+    "message": "顯示分類標題",
+    "description": "Show category headers checkbox label"
+  },
+  "openInNewTab": {
+    "message": "在新分頁中開啟捷徑",
+    "description": "Open in new tab checkbox label"
+  },
+  "confirmDelete": {
+    "message": "確定要刪除此捷徑嗎？",
+    "description": "Confirmation message for delete"
+  },
+  "csvError": {
+    "message": "無效的 CSV 檔案",
+    "description": "Error message for invalid CSV"
+  },
+  "importSuccess": {
+    "message": "已匯入",
+    "description": "Success message prefix for import"
+  },
+  "shortcuts": {
+    "message": "個捷徑",
+    "description": "Plural form of shortcuts"
+  }
+}

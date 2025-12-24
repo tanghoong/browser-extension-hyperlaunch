@@ -1,0 +1,162 @@
+{
+  "extensionName": {
+    "message": "HyperLaunch",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "快速、键盘友好的新标签启动器，支持网页链接、WhatsApp、本地文件和应用协议。",
+    "description": "Description of the extension"
+  },
+  "searchPlaceholder": {
+    "message": "搜索快捷方式...",
+    "description": "Placeholder text for search input"
+  },
+  "searchHint": {
+    "message": "按 ESC 聚焦",
+    "description": "Hint for keyboard shortcut"
+  },
+  "addShortcut": {
+    "message": "+ 添加快捷方式",
+    "description": "Button to add new shortcut"
+  },
+  "importCSV": {
+    "message": "导入 CSV",
+    "description": "Button to import CSV file"
+  },
+  "exportCSV": {
+    "message": "导出 CSV",
+    "description": "Button to export CSV file"
+  },
+  "settings": {
+    "message": "设置",
+    "description": "Settings button tooltip"
+  },
+  "emptyStateTitle": {
+    "message": "还没有快捷方式",
+    "description": "Title when no shortcuts exist"
+  },
+  "emptyStateDesc": {
+    "message": "添加您的第一个快捷方式开始使用！",
+    "description": "Description when no shortcuts exist"
+  },
+  "titleLabel": {
+    "message": "标题",
+    "description": "Label for title input"
+  },
+  "titlePlaceholder": {
+    "message": "例如：Gmail",
+    "description": "Placeholder for title input"
+  },
+  "urlLabel": {
+    "message": "网址",
+    "description": "Label for URL input"
+  },
+  "urlPlaceholder": {
+    "message": "例如：https://mail.google.com",
+    "description": "Placeholder for URL input"
+  },
+  "categoryLabel": {
+    "message": "分类",
+    "description": "Label for category input"
+  },
+  "categoryPlaceholder": {
+    "message": "例如：工作",
+    "description": "Placeholder for category input"
+  },
+  "iconTypeLabel": {
+    "message": "图标类型",
+    "description": "Label for icon type select"
+  },
+  "iconAuto": {
+    "message": "自动（网站图标）",
+    "description": "Auto icon option"
+  },
+  "iconColor": {
+    "message": "彩色图标",
+    "description": "Color icon option"
+  },
+  "iconEmoji": {
+    "message": "表情符号",
+    "description": "Emoji icon option"
+  },
+  "iconTextLabel": {
+    "message": "图标文字/表情",
+    "description": "Label for icon text input"
+  },
+  "iconTextPlaceholder": {
+    "message": "例如：G 或 📧",
+    "description": "Placeholder for icon text input"
+  },
+  "iconColorLabel": {
+    "message": "图标颜色",
+    "description": "Label for icon color picker"
+  },
+  "pinLabel": {
+    "message": "置顶",
+    "description": "Label for pin checkbox"
+  },
+  "delete": {
+    "message": "删除",
+    "description": "Delete button"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "保存",
+    "description": "Save button"
+  },
+  "edit": {
+    "message": "编辑",
+    "description": "Edit button tooltip"
+  },
+  "editShortcut": {
+    "message": "编辑快捷方式",
+    "description": "Modal title for editing shortcut"
+  },
+  "theme": {
+    "message": "主题",
+    "description": "Theme setting label"
+  },
+  "themeAuto": {
+    "message": "自动",
+    "description": "Auto theme option"
+  },
+  "themeLight": {
+    "message": "浅色",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "深色",
+    "description": "Dark theme option"
+  },
+  "gridColumns": {
+    "message": "网格列数",
+    "description": "Grid columns setting label"
+  },
+  "showCategoryHeaders": {
+    "message": "显示分类标题",
+    "description": "Show category headers checkbox label"
+  },
+  "openInNewTab": {
+    "message": "在新标签页中打开快捷方式",
+    "description": "Open in new tab checkbox label"
+  },
+  "confirmDelete": {
+    "message": "确定要删除此快捷方式吗？",
+    "description": "Confirmation message for delete"
+  },
+  "csvError": {
+    "message": "无效的 CSV 文件",
+    "description": "Error message for invalid CSV"
+  },
+  "importSuccess": {
+    "message": "已导入",
+    "description": "Success message prefix for import"
+  },
+  "shortcuts": {
+    "message": "个快捷方式",
+    "description": "Plural form of shortcuts"
+  }
+}

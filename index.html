@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HyperLaunch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="Search shortcuts..." autofocus>
+        <span class="search-hint" data-i18n="searchHint">Press ESC to focus</span>
+      </div>
+      <div class="header-actions">
+        <button id="addShortcutBtn" class="btn btn-primary" data-i18n="addShortcut">+ Add Shortcut</button>
+        <button id="importCsvBtn" class="btn btn-secondary" data-i18n="importCSV">Import CSV</button>
+        <button id="exportCsvBtn" class="btn btn-secondary" data-i18n="exportCSV">Export CSV</button>
+        <button id="settingsBtn" class="btn btn-icon" title="Settings" data-i18n-title="settings">⚙️</button>
+      </div>
+      <input type="file" id="importFile" accept=".csv" hidden>
+    </header>
+
+    <div class="categories-nav" id="categoriesNav"></div>
+
+    <main id="shortcutGrid" class="shortcut-grid"></main>
+
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">🚀</div>
+      <h2 data-i18n="emptyStateTitle">No shortcuts yet</h2>
+      <p data-i18n="emptyStateDesc">Add your first shortcut to get started!</p>
+      <button id="emptyAddBtn" class="btn btn-primary" data-i18n="addShortcut">+ Add Shortcut</button>
+    </div>
+  </div>
+
+  <!-- Add/Edit Shortcut Modal -->
+  <div id="shortcutModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle" data-i18n="addShortcut">Add Shortcut</h2>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <form id="shortcutForm">
+        <div class="form-group">
+          <label for="shortcutTitle" data-i18n="titleLabel">Title</label>
+          <input type="text" id="shortcutTitle" required data-i18n-placeholder="titlePlaceholder" placeholder="e.g., Gmail">
+        </div>
+        <div class="form-group">
+          <label for="shortcutUrl" data-i18n="urlLabel">URL</label>
+          <input type="text" id="shortcutUrl" required data-i18n-placeholder="urlPlaceholder" placeholder="e.g., https://mail.google.com">
+        </div>
+        <div class="form-group">
+          <label for="shortcutCategory" data-i18n="categoryLabel">Category</label>
+          <input type="text" id="shortcutCategory" list="categoriesList" data-i18n-placeholder="categoryPlaceholder" placeholder="e.g., Work">
+          <datalist id="categoriesList"></datalist>
+        </div>
+        <div class="form-group">
+          <label for="shortcutIconType" data-i18n="iconTypeLabel">Icon Type</label>
+          <select id="shortcutIconType">
+            <option value="color" data-i18n="iconColor">Color Icon</option>
+            <option value="emoji" data-i18n="iconEmoji">Emoji</option>
+          </select>
+        </div>
+        <div class="form-group" id="iconTextGroup">
+          <label for="shortcutIconText" data-i18n="iconTextLabel">Icon Text/Emoji</label>
+          <div class="emoji-picker">
+            <div class="emoji-item" data-emoji="📧">📧</div>
+            <div class="emoji-item" data-emoji="💼">💼</div>
+            <div class="emoji-item" data-emoji="📁">📁</div>
+            <div class="emoji-item" data-emoji="📝">📝</div>
+            <div class="emoji-item" data-emoji="📊">📊</div>
+            <div class="emoji-item" data-emoji="📱">📱</div>
+            <div class="emoji-item" data-emoji="💻">💻</div>
+            <div class="emoji-item" data-emoji="🎵">🎵</div>
+            <div class="emoji-item" data-emoji="🎬">🎬</div>
+            <div class="emoji-item" data-emoji="📷">📷</div>
+            <div class="emoji-item" data-emoji="🎨">🎨</div>
+            <div class="emoji-item" data-emoji="📚">📚</div>
+            <div class="emoji-item" data-emoji="🔧">🔧</div>
+            <div class="emoji-item" data-emoji="⚙️">⚙️</div>
+            <div class="emoji-item" data-emoji="🔐">🔐</div>
+            <div class="emoji-item" data-emoji="🌐">🌐</div>
+            <div class="emoji-item" data-emoji="🚀">🚀</div>
+            <div class="emoji-item" data-emoji="⭐">⭐</div>
+            <div class="emoji-item" data-emoji="💡">💡</div>
+            <div class="emoji-item" data-emoji="🎯">🎯</div>
+            <div class="emoji-item" data-emoji="📈">📈</div>
+            <div class="emoji-item" data-emoji="💰">💰</div>
+            <div class="emoji-item" data-emoji="🛒">🛒</div>
+            <div class="emoji-item" data-emoji="🏠">🏠</div>
+            <div class="emoji-item" data-emoji="🎮">🎮</div>
+            <div class="emoji-item" data-emoji="📹">📹</div>
+            <div class="emoji-item" data-emoji="💬">💬</div>
+            <div class="emoji-item" data-emoji="🔔">🔔</div>
+            <div class="emoji-item" data-emoji="❤️">❤️</div>
+            <div class="emoji-item" data-emoji="🌟">🌟</div>
+          </div>
+          <input type="text" id="shortcutIconText" maxlength="2" data-i18n-placeholder="iconTextPlaceholder" placeholder="e.g., G or 📧">
+        </div>
+        <div class="form-group" id="iconColorGroup">
+          <label for="shortcutIconColor" data-i18n="iconColorLabel">Icon Color</label>
+          <div class="color-palette">
+            <div class="color-swatch" data-color="#EF4444" style="background: #EF4444" title="Red"></div>
+            <div class="color-swatch" data-color="#F59E0B" style="background: #F59E0B" title="Orange"></div>
+            <div class="color-swatch" data-color="#10B981" style="background: #10B981" title="Green"></div>
+            <div class="color-swatch" data-color="#3B82F6" style="background: #3B82F6" title="Blue"></div>
+            <div class="color-swatch" data-color="#6366F1" style="background: #6366F1" title="Indigo"></div>
+            <div class="color-swatch" data-color="#8B5CF6" style="background: #8B5CF6" title="Purple"></div>
+            <div class="color-swatch" data-color="#EC4899" style="background: #EC4899" title="Pink"></div>
+            <div class="color-swatch" data-color="#14B8A6" style="background: #14B8A6" title="Teal"></div>
+            <div class="color-swatch" data-color="#64748B" style="background: #64748B" title="Slate"></div>
+            <div class="color-swatch" data-color="#1F2937" style="background: #1F2937" title="Dark"></div>
+          </div>
+          <input type="hidden" id="shortcutIconColor" value="#6366f1">
+        </div>
+        <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+          <input type="checkbox" id="shortcutPinned" style="width: auto; margin: 0;">
+          <label for="shortcutPinned" style="margin: 0; cursor: pointer;" data-i18n="pinLabel">Pin to top</label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="deleteShortcutBtn" class="btn btn-danger" style="display: none;" data-i18n="delete">Delete</button>
+          <div class="modal-actions-right">
+            <button type="button" id="cancelBtn" class="btn btn-secondary" data-i18n="cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-i18n="save">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 data-i18n="settings">Settings</h2>
+        <button class="modal-close" id="settingsClose">&times;</button>
+      </div>
+      <div class="settings-body">
+        <div class="form-group">
+          <label for="themeSelect" data-i18n="theme">Theme</label>
+          <select id="themeSelect">
+            <option value="auto" data-i18n="themeAuto">Auto</option>
+            <option value="light" data-i18n="themeLight">Light</option>
+            <option value="dark" data-i18n="themeDark">Dark</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gridColumns" data-i18n="gridColumns">Grid Columns</label>
+          <input type="range" id="gridColumns" min="3" max="10" value="6" step="1">
+          <span id="gridColumnsValue">6</span>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="showCategoryHeaders">
+            <span data-i18n="showCategoryHeaders">Show category headers</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="openInNewTab" checked>
+            <span data-i18n="openInNewTab">Open shortcuts in new tab</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <template id="shortcutCardTpl">
+    <div class="shortcut-card" tabindex="0" draggable="true">
+      <button class="shortcut-pin" title="Pin"></button>
+      <div class="shortcut-icon"></div>
+      <div class="shortcut-title"></div>
+      <div class="shortcut-actions">
+        <button class="shortcut-edit" title="Edit" data-i18n-title="edit">✏️</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="categoryHeaderTpl">
+    <div class="category-header">
+      <h3 class="category-title"></h3>
+      <span class="category-count"></span>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

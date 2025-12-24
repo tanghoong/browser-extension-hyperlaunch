@@ -1,0 +1,162 @@
+{
+  "extensionName": {
+    "message": "HyperLaunch",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Fast, keyboard-friendly new tab launcher for web links, WhatsApp, local files, and app protocols.",
+    "description": "Description of the extension"
+  },
+  "searchPlaceholder": {
+    "message": "Search shortcuts...",
+    "description": "Placeholder text for search input"
+  },
+  "searchHint": {
+    "message": "Press ESC to focus",
+    "description": "Hint for keyboard shortcut"
+  },
+  "addShortcut": {
+    "message": "+ Add Shortcut",
+    "description": "Button to add new shortcut"
+  },
+  "importCSV": {
+    "message": "Import CSV",
+    "description": "Button to import CSV file"
+  },
+  "exportCSV": {
+    "message": "Export CSV",
+    "description": "Button to export CSV file"
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Settings button tooltip"
+  },
+  "emptyStateTitle": {
+    "message": "No shortcuts yet",
+    "description": "Title when no shortcuts exist"
+  },
+  "emptyStateDesc": {
+    "message": "Add your first shortcut to get started!",
+    "description": "Description when no shortcuts exist"
+  },
+  "titleLabel": {
+    "message": "Title",
+    "description": "Label for title input"
+  },
+  "titlePlaceholder": {
+    "message": "e.g., Gmail",
+    "description": "Placeholder for title input"
+  },
+  "urlLabel": {
+    "message": "URL",
+    "description": "Label for URL input"
+  },
+  "urlPlaceholder": {
+    "message": "e.g., https://mail.google.com",
+    "description": "Placeholder for URL input"
+  },
+  "categoryLabel": {
+    "message": "Category",
+    "description": "Label for category input"
+  },
+  "categoryPlaceholder": {
+    "message": "e.g., Work",
+    "description": "Placeholder for category input"
+  },
+  "iconTypeLabel": {
+    "message": "Icon Type",
+    "description": "Label for icon type select"
+  },
+  "iconAuto": {
+    "message": "Auto (Favicon)",
+    "description": "Auto icon option"
+  },
+  "iconColor": {
+    "message": "Color Icon",
+    "description": "Color icon option"
+  },
+  "iconEmoji": {
+    "message": "Emoji",
+    "description": "Emoji icon option"
+  },
+  "iconTextLabel": {
+    "message": "Icon Text/Emoji",
+    "description": "Label for icon text input"
+  },
+  "iconTextPlaceholder": {
+    "message": "e.g., G or 📧",
+    "description": "Placeholder for icon text input"
+  },
+  "iconColorLabel": {
+    "message": "Icon Color",
+    "description": "Label for icon color picker"
+  },
+  "pinLabel": {
+    "message": "Pin to top",
+    "description": "Label for pin checkbox"
+  },
+  "delete": {
+    "message": "Delete",
+    "description": "Delete button"
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save button"
+  },
+  "edit": {
+    "message": "Edit",
+    "description": "Edit button tooltip"
+  },
+  "editShortcut": {
+    "message": "Edit Shortcut",
+    "description": "Modal title for editing shortcut"
+  },
+  "theme": {
+    "message": "Theme",
+    "description": "Theme setting label"
+  },
+  "themeAuto": {
+    "message": "Auto",
+    "description": "Auto theme option"
+  },
+  "themeLight": {
+    "message": "Light",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Dark",
+    "description": "Dark theme option"
+  },
+  "gridColumns": {
+    "message": "Grid Columns",
+    "description": "Grid columns setting label"
+  },
+  "showCategoryHeaders": {
+    "message": "Show category headers",
+    "description": "Show category headers checkbox label"
+  },
+  "openInNewTab": {
+    "message": "Open shortcuts in new tab",
+    "description": "Open in new tab checkbox label"
+  },
+  "confirmDelete": {
+    "message": "Are you sure you want to delete this shortcut?",
+    "description": "Confirmation message for delete"
+  },
+  "csvError": {
+    "message": "Invalid CSV file",
+    "description": "Error message for invalid CSV"
+  },
+  "importSuccess": {
+    "message": "Imported",
+    "description": "Success message prefix for import"
+  },
+  "shortcuts": {
+    "message": "shortcuts",
+    "description": "Plural form of shortcuts"
+  }
+}
