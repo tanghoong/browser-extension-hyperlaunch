@@ -1,25 +1,25 @@
-title,url,category,icon_type,icon_text,icon_color,order
-Gmail,https://mail.google.com,Work,color,G,#EA4335,1
-Google Drive,https://drive.google.com,Work,color,D,#4285F4,2
-Google Calendar,https://calendar.google.com,Work,color,C,#FBBC04,3
-Slack,https://slack.com,Work,color,S,#4A154B,4
-Notion,https://notion.so,Personal,color,N,#000000,5
-GitHub,https://github.com,Work,color,G,#181717,6
-YouTube,https://youtube.com,Hobbies,color,Y,#FF0000,7
-Twitter,https://twitter.com,Personal,color,T,#1DA1F2,8
-LinkedIn,https://linkedin.com,Work,color,L,#0A66C2,9
-WhatsApp Web,https://web.whatsapp.com,Personal,emoji,📱,,10
-Netflix,https://netflix.com,Hobbies,color,N,#E50914,11
-Spotify,https://spotify.com,Hobbies,emoji,🎵,,12
-Amazon,https://amazon.com,Personal,color,A,#FF9900,13
-Wikipedia,https://wikipedia.org,Hobbies,color,W,#000000,14
-Stack Overflow,https://stackoverflow.com,Work,color,S,#F48024,15
-Reddit,https://reddit.com,Hobbies,color,R,#FF4500,16
-Medium,https://medium.com,Hobbies,color,M,#000000,17
-Trello,https://trello.com,Work,color,T,#0052CC,18
-Zoom,https://zoom.us,Work,emoji,📹,,19
-Figma,https://figma.com,Work,color,F,#F24E1E,20
-VS Code (Local),vscode://,Work,emoji,💻,,21
-My Documents,file:///C:/Users/YourName/Documents,Personal,emoji,📁,,22
-Notion Protocol,notion://,Personal,emoji,📝,,23
-Custom Link,https://example.com,Personal,color,E,#10b981,24
+title,url,category,icon_type,icon_text,icon_color,order,pinned
+Gmail,https://mail.google.com,Work,color,G,#EA4335,1,true
+Google Drive,https://drive.google.com,Work,color,D,#4285F4,2,false
+Google Calendar,https://calendar.google.com,Work,color,C,#FBBC04,3,false
+Slack,https://slack.com,Work,color,S,#4A154B,4,false
+Notion,https://notion.so,Personal,color,N,#000000,5,true
+GitHub,https://github.com,Work,color,G,#181717,6,false
+YouTube,https://youtube.com,Hobbies,color,Y,#FF0000,7,false
+Twitter,https://twitter.com,Personal,color,T,#1DA1F2,8,false
+LinkedIn,https://linkedin.com,Work,color,L,#0A66C2,9,false
+WhatsApp Web,https://web.whatsapp.com,Personal,emoji,📱,,10,false
+Netflix,https://netflix.com,Hobbies,color,N,#E50914,11,false
+Spotify,https://spotify.com,Hobbies,emoji,🎵,,12,false
+Amazon,https://amazon.com,Personal,color,A,#FF9900,13,false
+Wikipedia,https://wikipedia.org,Hobbies,color,W,#000000,14,false
+Stack Overflow,https://stackoverflow.com,Work,color,S,#F48024,15,false
+Reddit,https://reddit.com,Hobbies,color,R,#FF4500,16,false
+Medium,https://medium.com,Hobbies,color,M,#000000,17,false
+Trello,https://trello.com,Work,color,T,#0052CC,18,false
+Zoom,https://zoom.us,Work,emoji,📹,,19,false
+Figma,https://figma.com,Work,color,F,#F24E1E,20,false
+VS Code (Local),vscode://,Work,emoji,💻,,21,false
+My Documents,file:///C:/Users/YourName/Documents,Personal,emoji,📁,,22,false
+Notion Protocol,notion://,Personal,emoji,📝,,23,false
+Custom Link,https://example.com,Personal,color,E,#10b981,24,false
