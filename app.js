@@ -740,6 +740,12 @@ let draggedElement = null;
 let draggedShortcut = null;
 let dragType = null; // 'shortcut' or 'category'
 
+// Helper function to calculate insertion index after array splice
+function calculateInsertIndex(draggedIndex, targetIndex) {
+  // If dragging from before the target, target index shifts down by 1 after removal
+  return draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
+}
+
 function handleDragStart(e) {
   draggedElement = e.currentTarget;
   draggedShortcut = state.shortcuts.find(s => s.id === e.currentTarget.dataset.shortcutId);
@@ -795,8 +801,7 @@ function handleDrop(e) {
       const [removed] = state.shortcuts.splice(draggedIndex, 1);
       
       // Calculate the correct insertion index after removal
-      // If dragging from before the target, target index shifts down by 1
-      const insertIndex = draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
+      const insertIndex = calculateInsertIndex(draggedIndex, targetIndex);
       
       // Insert at the correct position
       state.shortcuts.splice(insertIndex, 0, removed);
@@ -807,6 +812,7 @@ function handleDrop(e) {
       });
       
       saveData();
+      cleanupEmptyCategories();
       renderCategoriesNav();
       render();
     }
@@ -854,7 +860,8 @@ function handleCategoryDragOver(e) {
     return false;
   }
   
-  if (draggedCategory && targetCategory !== draggedCategory) {
+  // Explicit dragType check for robustness
+  if (dragType === 'category' && draggedCategory && targetCategory !== draggedCategory) {
     document.querySelectorAll(".category-tab.drag-over").forEach(el => {
       el.classList.remove("drag-over");
     });
@@ -884,7 +891,7 @@ function handleCategoryDrop(e) {
       const [removed] = state.categories.splice(draggedIndex, 1);
       
       // Calculate the correct insertion index after removal
-      const insertIndex = draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
+      const insertIndex = calculateInsertIndex(draggedIndex, targetIndex);
       
       // Insert at the correct position
       state.categories.splice(insertIndex, 0, removed);
