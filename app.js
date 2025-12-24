@@ -394,7 +394,7 @@ function renderCategoriesNav() {
       tab.addEventListener("dragend", handleCategoryDragEnd);
     }
     
-    // All tabs can receive drops (except All and Pinned)
+    // All tabs receive drag events, but handlers filter out All and Pinned
     tab.addEventListener("dragover", handleCategoryDragOver);
     tab.addEventListener("drop", handleCategoryDrop);
     
@@ -939,7 +939,8 @@ async function handleCsvImport(e) {
     const iconType = values[3]?.trim() || "color";
     const iconText = values[4]?.trim() || title[0].toUpperCase();
     const iconColor = values[5]?.trim() || generateColor(title);
-    // Parse pinned column (index 7) - support "true", "1", "yes" as truthy values
+    // Column 6 (order) is intentionally skipped - order is determined by array position
+    // Column 7 (pinned) - support "true", "1", "yes" as truthy values
     const pinnedValue = values[7]?.trim()?.toLowerCase();
     const pinned = pinnedValue === "true" || pinnedValue === "1" || pinnedValue === "yes";
     
